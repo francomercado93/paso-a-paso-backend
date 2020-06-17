@@ -8,7 +8,8 @@ app.set('port', process.env.PORT || 3000);
 app.use(express.json());
 
 // Routes
-app.use(require('./routes/locacion'))
+app.use(require('./routes/locacion'));
+app.use(require('./routes/ruta'))
 // Starting the server
 
 
