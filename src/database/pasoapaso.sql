@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `paso-a-paso` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `paso-a-paso`;
 -- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: paso-a-paso
@@ -41,7 +43,7 @@ CREATE TABLE `instruccion` (
 
 LOCK TABLES `instruccion` WRITE;
 /*!40000 ALTER TABLE `instruccion` DISABLE KEYS */;
-INSERT INTO `instruccion` VALUES (1,2,1,20),(2,2,2,0),(3,2,3,0),(4,2,1,20),(5,2,4,20),(6,2,1,35),(7,4,1,20),(8,4,3,0),(9,4,1,20),(10,4,3,0),(11,4,1,5),(12,4,2,0),(13,4,1,40),(14,4,2,0),(15,4,1,15),(16,4,3,0),(17,4,1,75),(18,4,3,0),(19,4,1,3),(20,4,2,0),(21,4,1,3),(22,4,3,0),(23,4,1,10),(24,5,1,10),(25,5,2,0),(26,5,6,5),(27,5,1,5),(28,5,2,0);
+INSERT INTO `instruccion` VALUES (1,2,1,20),(2,2,2,0),(4,2,1,20),(5,2,4,20),(6,2,1,35),(7,4,1,20),(8,4,3,0),(9,4,1,20),(10,4,3,0),(11,4,1,5),(12,4,2,0),(13,4,1,40),(14,4,2,0),(15,4,1,15),(16,4,3,0),(17,4,1,75),(18,4,3,0),(19,4,1,3),(20,4,2,0),(21,4,1,3),(22,4,3,0),(23,4,1,10),(24,5,1,10),(25,5,2,0),(26,5,6,5),(27,5,1,5),(28,5,2,0);
 /*!40000 ALTER TABLE `instruccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -423,4 +425,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-17 18:33:18
+-- Dump completed on 2020-06-18 16:24:12

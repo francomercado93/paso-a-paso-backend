@@ -37,4 +37,21 @@ router.get('/rutas/:id', (req, res) => {
     })
 });
 
+router.get('/instrucciones/:id', (req, res) => {
+    
+    const { id } = req.params;
+    
+    const sp = `CALL instruccionesRuta(${id})`;
+    
+    mysqlConnection.query(sp, (err, rows, fields) => {
+        if (!err) {
+            // Revisar
+            res.json(rows[0]);
+        }
+        else {
+            console.log(err);
+        }
+    })
+});
+
 module.exports = router;
