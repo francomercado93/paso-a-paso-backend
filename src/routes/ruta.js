@@ -29,7 +29,7 @@ router.get('/rutas/:id', (req, res) => {
     mysqlConnection.query(sp, (err, rows, fields) => {
         if (!err) {
             // Revisar
-            res.json(rows[0]);
+            res.json(rows[0][0]);
         }
         else {
             console.log(err);
