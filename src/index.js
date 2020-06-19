@@ -9,7 +9,8 @@ app.use(express.json());
 
 // Routes
 app.use(require('./routes/locacion'));
-app.use(require('./routes/ruta'))
+app.use(require('./routes/ruta'));
+app.use(require('./routes/usuario'));
 // Starting the server
 
 
