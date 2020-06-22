@@ -6,6 +6,10 @@ app.set('port', process.env.PORT || 3000);
 
 // Middlewares
 app.use(express.json());
+// app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+// app.use(bodyParser.json())
 
 // Routes
 app.use(require('./routes/locacion'));
