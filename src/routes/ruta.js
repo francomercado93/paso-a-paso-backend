@@ -52,33 +52,27 @@ router.post('/rutas', jsonParser, (req, res) => {
         estado,
         instrucciones
     } = req.body;
-    const spIdLocacion = `CALL idLocacionPorNombre("${locacion}")`;
-    mysqlConnection.query(spIdLocacion, (err, result) => {
+    const spRuta = `CALL nuevaRuta(${esPublica}, "${locacion}", "${nombre}", "${usuario}", "${fechaCreacion}", "${descripcion}", ${estado})`;
+    mysqlConnection.query(spRuta, (err, result) => {
         if (!err) {
-            const { idLocacion } = result[0][0];
-            const spRuta = `CALL nuevaRuta(${esPublica}, ${idLocacion}, "${nombre}", "${usuario}", "${fechaCreacion}", "${descripcion}", ${estado})`;
-            mysqlConnection.query(spRuta, (err, result) => {
-                if (!err) {
-                    const { id_ruta } = result[0][0];
-                    console.log(id_ruta);
-                    instrucciones.forEach(inst => {
-                        const spInstruccion = `CALL insertInstruccion(${id_ruta}, "${inst.tipoInstruccion}", "${inst.cantidad}")`;
-                        mysqlConnection.query(spInstruccion, err => {
-                            if (!err) {
-                                console.log("Insert correcto de instruccion");
-                            }
-                            else {
-                                console.log(err);
-                            }
-                        });
-                    })
-                    res.sendStatus(200);
-                }
-                else {
-                    console.log(err);
-                }
-            });
-        } else {
+            const { id_ruta } = result[0][0];
+            console.log(id_ruta);
+            instrucciones.forEach(inst => {
+                const spInstruccion = `CALL insertInstruccion(${id_ruta}, "${inst.tipoInstruccion}", ${inst.cantidad})`;
+                mysqlConnection.query(spInstruccion, err => {
+                    if (!err) {
+                        console.log("Insert correcto de instruccion");
+                    }
+                    else {
+                        res.sendStatus(400).error("Ocurrio un error al ingresar instrucciones a la bd");
+                        console.log(err);
+                    }
+                });
+            })
+            res.sendStatus(202);
+        }
+        else {
+            res.sendStatus(400).error("Ocurrio un error al ingresar la ruta a la bd");
             console.log(err);
         }
     });
