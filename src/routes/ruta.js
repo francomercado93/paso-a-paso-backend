@@ -69,10 +69,10 @@ router.post('/instrucciones/:id', (req, res) => {
 
     const { id } = req.params;
 
-    const { tipoInstruccion, cantidad } = req.body;
+    const { tipoInstruccion, cantidad, numeroInstruccion } = req.body;
     console.log(req.body);
 
-    const spInstruccion = `CALL insertInstruccion(${id}, "${tipoInstruccion}", ${cantidad})`;
+    const spInstruccion = `CALL insertInstruccion(${id}, "${tipoInstruccion}", ${cantidad}, ${numeroInstruccion})`;
 
     mysqlConnection.query(spInstruccion, err => {
         if (!err) {
