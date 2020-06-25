@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `instruccion`;
 CREATE TABLE `instruccion` (
   `id_instruccion` int NOT NULL AUTO_INCREMENT,
   `id_ruta` int NOT NULL,
+  `numero_instruccion` int NOT NULL,
   `id_tipo_instruccion` int NOT NULL,
   `cantidad` int NOT NULL,
   PRIMARY KEY (`id_instruccion`),
@@ -34,7 +35,7 @@ CREATE TABLE `instruccion` (
   KEY `fk_id_tipo_instruccion_idx` (`id_tipo_instruccion`),
   CONSTRAINT `fk_id_tipo_instruccion` FOREIGN KEY (`id_tipo_instruccion`) REFERENCES `tipo_instruccion` (`id_tipo_instruccion`),
   CONSTRAINT `fk_ruta` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `instruccion` (
 
 LOCK TABLES `instruccion` WRITE;
 /*!40000 ALTER TABLE `instruccion` DISABLE KEYS */;
-INSERT INTO `instruccion` VALUES (1,2,1,20),(2,2,2,0),(4,2,1,20),(5,2,4,20),(6,2,1,35),(7,4,1,20),(8,4,3,0),(9,4,1,20),(10,4,3,0),(11,4,1,5),(12,4,2,0),(13,4,1,40),(14,4,2,0),(15,4,1,15),(16,4,3,0),(17,4,1,75),(18,4,3,0),(19,4,1,3),(20,4,2,0),(21,4,1,3),(22,4,3,0),(23,4,1,10),(24,5,1,10),(25,5,2,0),(26,5,6,5),(27,5,1,5),(28,5,2,0);
+INSERT INTO `instruccion` VALUES (1,2,1,1,20),(2,2,2,2,0),(4,2,3,1,20),(5,2,4,4,20),(6,2,5,1,35),(7,4,1,1,20),(8,4,2,3,0),(9,4,3,1,20),(10,4,4,3,0),(11,4,5,1,5),(12,4,6,2,0),(13,4,7,1,40),(14,4,8,2,0),(15,4,9,1,15),(16,4,10,3,0),(17,4,11,1,75),(18,4,12,3,0),(19,4,13,1,3),(20,4,14,2,0),(21,4,15,1,3),(22,4,16,3,0),(23,4,17,1,10),(24,5,1,1,10),(25,5,2,2,0),(26,5,3,6,5),(27,5,4,1,5),(28,5,5,2,0),(29,2,1,1,10);
 /*!40000 ALTER TABLE `instruccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,7 +71,7 @@ CREATE TABLE `locacion` (
   CONSTRAINT `fk_id_provincia` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`),
   CONSTRAINT `fk_id_tipo_locacion` FOREIGN KEY (`id_tipo_locacion`) REFERENCES `tipo_locacion` (`id_tipo_locacion`),
   CONSTRAINT `fk_usr` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,7 +80,7 @@ CREATE TABLE `locacion` (
 
 LOCK TABLES `locacion` WRITE;
 /*!40000 ALTER TABLE `locacion` DISABLE KEYS */;
-INSERT INTO `locacion` VALUES (1,'Universidad Nacional de San Martín','Martin de Irigoyen 3100','San Martin',2,3,0,'lamponne@gmail.com'),(2,'Universidad Nacional de La Matanza','Pres. Juan Domingo Peron 2335','La Matanza',2,3,0,'lamponne@gmail.com'),(3,'Universidad Nacional de Tres de Febrero','Valentin Gomez 4772','Tres de Febrero',2,3,0,'lamponne@gmail.com'),(4,'Hospital Pirovano','Av. Monroe 3555\"','CABA',1,2,0,'lamponne@gmail.com'),(5,'Hospital Tornú','Combatientes de Malvinas 3002','CABA',1,2,0,'lamponne@gmail.com'),(6,'Hospital Thompson','Avellaneda 33','San Martin',1,2,1,'lamponne@gmail.com');
+INSERT INTO `locacion` VALUES (1,'Universidad Nacional de San Martín','Martin de Irigoyen 3100','San Martin',2,3,0,'lamponne@gmail.com'),(2,'Universidad Nacional de La Matanza','Pres. Juan Domingo Peron 2335','La Matanza',2,3,0,'lamponne@gmail.com'),(3,'Universidad Nacional de Tres de Febrero','Valentin Gomez 4772','Tres de Febrero',2,3,0,'lamponne@gmail.com'),(4,'Hospital Pirovano','Av. Monroe 3555\"','CABA',1,2,0,'lamponne@gmail.com'),(5,'Hospital Tornú','Combatientes de Malvinas 3002','CABA',1,2,0,'lamponne@gmail.com'),(6,'Hospital Thompson','Avellaneda 33','San Martin',1,2,1,'lamponne@gmail.com'),(7,'test','calle falsa 123','san martin',2,1,0,'lamponne@gmail.com'),(8,'test','test','test',2,1,1,'lamponne@gmail.com'),(9,'test','test','test',2,1,1,'lamponne@gmail.com'),(10,'test','ts','San Martin',2,2,1,'emiravenna@gmail.com'),(11,'Serenisima','calle falsa 123','Chivilcoy',2,2,1,'emiravenna@gmail.com');
 /*!40000 ALTER TABLE `locacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,7 +185,7 @@ CREATE TABLE `ruta` (
   CONSTRAINT `fk_locacion_id` FOREIGN KEY (`id_locacion`) REFERENCES `locacion` (`id_locacion`),
   CONSTRAINT `fk_nombreusuario` FOREIGN KEY (`creado_por`) REFERENCES `usuario` (`usuario`),
   CONSTRAINT `fk_ruta_1` FOREIGN KEY (`id_ruta_estado`) REFERENCES `ruta_estado` (`id_ruta_estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,7 +194,7 @@ CREATE TABLE `ruta` (
 
 LOCK TABLES `ruta` WRITE;
 /*!40000 ALTER TABLE `ruta` DISABLE KEYS */;
-INSERT INTO `ruta` VALUES (1,0,1,'Biblioteca','lamponne@gmail.com','2020-05-06','Biblioteca de la UNSAM',1),(2,0,1,'Departamento de alumnos tornavías','lamponne@gmail.com','2020-05-06','Departamento de alumnos tornavías de la UNSAM',1),(3,0,1,'Aulario','lamponne@gmail.com','2020-05-06','Aulario de la UNSAM',1),(4,0,1,'Laboratorio de Ciencias Sociales','lamponne@gmail.com','2020-05-06','Laboratiorio de Ciencias Sociales de la UNSAM',1),(5,0,4,'Sala de rayos X','lamponne@gmail.com','2020-05-06','Sala de rayos X del Hospital Pirovano',1),(6,0,1,'Test','lamponne@gmail.com','2020-05-06','Caminito',1),(7,0,1,'Test','mariosantos@gmail.com','2020-05-06','Caminito',1),(8,0,1,'Test','mariosantos@gmail.com','2020-05-06','caminito',1);
+INSERT INTO `ruta` VALUES (1,0,1,'Biblioteca','lamponne@gmail.com','2020-05-06','Biblioteca de la UNSAM',1),(2,0,1,'Departamento de alumnos tornavías','lamponne@gmail.com','2020-05-06','Departamento de alumnos tornavías de la UNSAM',1),(3,0,1,'Aulario','lamponne@gmail.com','2020-05-06','Aulario de la UNSAM',1),(4,0,1,'Laboratorio de Ciencias Sociales','lamponne@gmail.com','2020-05-06','Laboratiorio de Ciencias Sociales de la UNSAM',1),(5,0,4,'Sala de rayos X','lamponne@gmail.com','2020-05-06','Sala de rayos X del Hospital Pirovano',1);
 /*!40000 ALTER TABLE `ruta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,6 +440,88 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `crear_locacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `crear_locacion`(IN nombre VARCHAR(45), IN direccion VARCHAR(45), IN ciudad VARCHAR(45), IN id_provincia INT, IN id_tipoLocacion INT, IN esPublica Boolean, IN usuario VARCHAR(45))
+BEGIN
+	INSERT INTO locacion ( nombre_locacion, direccion, ciudad, id_provincia, id_tipo_locacion, es_publica, usuario)
+	VALUES (nombre, direccion, ciudad, id_provincia, id_tipoLocacion, IF(esPublica = false, 1, 0), usuario);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `idInstruccionPorNombre` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `idInstruccionPorNombre`(IN nombre VARCHAR(45))
+BEGIN
+	SELECT ti.id_tipo_instruccion as idInstruccion FROM tipo_instruccion ti
+    WHERE ti.instruccion LIKE '%nombre%';
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `idLocacionPorNombre` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `idLocacionPorNombre`(IN nombre VARCHAR(45))
+BEGIN
+	SELECT l.id_locacion as idLocacion FROM locacion l
+    WHERE l.nombre_locacion = nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `insertInstruccion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertInstruccion`(IN ruta INT, IN tipoInstruccion VARCHAR(45), IN cantidad INT )
+BEGIN
+	DECLARE idInstruccion INT DEFAULT 0;
+	SET idInstruccion = (SELECT ti.id_tipo_instruccion FROM tipo_instruccion ti WHERE ti.instruccion = tipoInstruccion);
+	INSERT INTO instruccion (id_ruta, id_tipo_instruccion, cantidad)
+	VALUES  (ruta, idInstruccion ,cantidad);
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `instruccionesRuta` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -449,13 +532,14 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `instruccionesRuta`(IN IdRuta VARCHAR(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `instruccionesRuta`(IN IdRuta INT)
 BEGIN
-	SELECT i.id_instruccion AS id, r.nombre_ruta AS nombreRuta, ti.instruccion AS tipoInstruccion, i.cantidad 
+	SELECT i.id_instruccion AS id, r.nombre_ruta AS nombreRuta, i.numero_instruccion AS numeroInstruccion, ti.instruccion AS tipoInstruccion, i.cantidad 
 	FROM instruccion i
 	INNER JOIN ruta r ON r.id_ruta = i.id_ruta
 	INNER JOIN tipo_instruccion ti ON ti.id_tipo_instruccion = i.id_tipo_instruccion
-	WHERE i.id_ruta = IdRuta;
+	WHERE i.id_ruta = IdRuta
+    ORDER BY i.numero_instruccion ASC;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -537,10 +621,38 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevaRuta`(IN esPublica Bool, IN idLocacion INT, IN nombre VARCHAR(45), IN usuario VARCHAR(45), IN fecha DATE, IN descripcion VARCHAR(45), IN rutaEstado INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevaRuta`(IN esPublica Bool, IN locacion VARCHAR(45), IN nombre VARCHAR(45), IN usuario VARCHAR(45), IN fecha DATE, IN descripcion VARCHAR(45), IN rutaEstado INT)
 BEGIN
+	DECLARE l_ruta_id INT DEFAULT 0;
+	DECLARE idLocacion INT DEFAULT 0;
+    
+    SET idLocacion = (SELECT l.id_locacion as idLocacion FROM locacion l
+						WHERE l.nombre_locacion = locacion);
+                        
 	INSERT INTO ruta (es_publica, id_locacion, nombre_ruta, creado_por, creado_el, descripcion, id_ruta_estado)
 	VALUES (esPublica, idLocacion, nombre,usuario , fecha, descripcion, rutaEstado);
+    
+	SET l_ruta_id = LAST_INSERT_ID();
+    SELECT r.id_ruta FROM ruta r WHERE r.id_ruta = l_ruta_id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `provincias` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `provincias`()
+BEGIN
+	SELECT p.id_provincia AS id, p.nombre FROM provincia p;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -645,4 +757,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-22 11:20:59
+-- Dump completed on 2020-06-25  1:31:12
