@@ -41,7 +41,45 @@ router.get('/rutas/:id', (req, res) => {
     })
 });
 
-router.post('/rutas', jsonParser, (req, res) => {
+// router.post('/rutas', (req, res) => {
+//     const {
+//         esPublica,
+//         locacion,
+//         nombre,
+//         usuario,
+//         fechaCreacion,
+//         descripcion,
+//         estado,
+//         instrucciones
+//     } = req.body;
+//     console.log(req.body);
+//     const spRuta = `CALL nuevaRuta(${esPublica}, "${locacion}", "${nombre}", "${usuario}", "${fechaCreacion}", "${descripcion}", ${estado})`;
+//     mysqlConnection.query(spRuta, (err, result) => {
+//         if (!err) {
+//             const { id_ruta } = result[0][0];
+//             console.log(id_ruta);
+//             instrucciones.forEach(inst => {
+//                 const spInstruccion = `CALL insertInstruccion(${id_ruta}, "${inst.tipoInstruccion}", ${inst.cantidad})`;
+//                 mysqlConnection.query(spInstruccion, err => {
+//                     if (!err) {
+//                         console.log("Insert correcto de instruccion");
+//                     }
+//                     else {
+//                         res.sendStatus(400);
+//                         console.log(err);
+//                     }
+//                 });
+//             })
+//             res.sendStatus(202);
+//         }
+//         else {
+//             res.sendStatus(400);
+//             console.log(err);
+//         }
+//     });
+// });
+
+router.post('/rutas', (req, res) => {
     const {
         esPublica,
         locacion,
@@ -50,29 +88,36 @@ router.post('/rutas', jsonParser, (req, res) => {
         fechaCreacion,
         descripcion,
         estado,
-        instrucciones
     } = req.body;
     const spRuta = `CALL nuevaRuta(${esPublica}, "${locacion}", "${nombre}", "${usuario}", "${fechaCreacion}", "${descripcion}", ${estado})`;
     mysqlConnection.query(spRuta, (err, result) => {
         if (!err) {
             const { id_ruta } = result[0][0];
             console.log(id_ruta);
-            instrucciones.forEach(inst => {
-                const spInstruccion = `CALL insertInstruccion(${id_ruta}, "${inst.tipoInstruccion}", ${inst.cantidad})`;
-                mysqlConnection.query(spInstruccion, err => {
-                    if (!err) {
-                        console.log("Insert correcto de instruccion");
-                    }
-                    else {
-                        res.sendStatus(400).error("Ocurrio un error al ingresar instrucciones a la bd");
-                        console.log(err);
-                    }
-                });
-            })
-            res.sendStatus(202);
+            res.json(id_ruta);
         }
         else {
-            res.sendStatus(400).error("Ocurrio un error al ingresar la ruta a la bd");
+            res.sendStatus(400);
+            console.log(err);
+        }
+    });
+});
+
+router.post('/instrucciones/:id', (req, res) => {
+
+    const { id } = req.params;
+
+    const { tipoInstruccion, cantidad } = req.body;
+    console.log(req.body);
+
+    const spInstruccion = `CALL insertInstruccion(${id}, "${tipoInstruccion}", ${cantidad})`;
+
+    mysqlConnection.query(spInstruccion, err => {
+        if (!err) {
+            console.log("Insert correcto de instruccion");
+        }
+        else {
+            res.sendStatus(400);
             console.log(err);
         }
     });
