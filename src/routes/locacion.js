@@ -59,8 +59,6 @@ router.get('/locaciones-usuario/:usr', (req, res) => {
     })
 });
 
-
-
 router.post('/crearlocacion', jsonParser, (req, res) => {
     const {
         nombre,

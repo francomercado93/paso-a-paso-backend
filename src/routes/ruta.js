@@ -74,15 +74,33 @@ router.post('/instrucciones/:id', (req, res) => {
 
     const spInstruccion = `CALL insertInstruccion(${id}, "${tipoInstruccion}", ${cantidad}, ${numeroInstruccion})`;
 
-    mysqlConnection.query(spInstruccion, err => {
+    mysqlConnection.query(spInstruccion, (err, rows) => {
         if (!err) {
             console.log("Insert correcto de instruccion");
+            res.json(rows[0]);
         }
         else {
             res.sendStatus(400);
             console.log(err);
         }
     });
+});
+
+
+router.get('/rutas-usuario/:usuario', (req, res) => {
+
+    const { usuario } = req.params;
+
+    const sp = `CALL rutasUsuario("${usuario}")`;
+
+    mysqlConnection.query(sp, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows[0]);
+        }
+        else {
+            console.log(err);
+        }
+    })
 });
 
 router.get('/instrucciones/:id', (req, res) => {
@@ -107,6 +125,20 @@ router.get('/tipos-instrucciones', (req, res) => {
     const sp = `CALL tiposInstrucciones()`;
 
     mysqlConnection.query(sp, (err, rows, fields) => {
+        if (!err) {
+            res.json(rows[0]);
+        }
+        else {
+            console.log(err);
+        }
+    })
+});
+
+router.put('/publicar-ruta/:idRuta', jsonParser, (req, res) => {
+    const { idRuta } = req.params;
+    console.log(req.params);
+    const sp = `CALL publicarRuta(${idRuta})`;
+    mysqlConnection.query(sp, (err, rows) => {
         if (!err) {
             res.json(rows[0]);
         }
