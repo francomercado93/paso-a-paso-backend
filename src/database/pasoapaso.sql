@@ -425,6 +425,33 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'paso-a-paso'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `actualizar_locacion` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `actualizar_locacion`(IN id INT, IN nombre VARCHAR(45), IN direccion VARCHAR(45), IN ciudad VARCHAR(45), IN id_provincia INT, IN id_tipoLocacion INT, IN esPublica Boolean, IN usuario VARCHAR(45))
+BEGIN
+	UPDATE locacion SET 
+    nombre_locacion = nombre, 
+    direccion = direccion, 
+    ciudad = ciudad, 
+    id_provincia = id_provincia, 
+    id_tipo_locacion = id_tipoLocacion, 
+    es_publica = IF(esPublica = false, 1, 0), 
+    usuario = usuario
+    WHERE id_locacion = id;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `categorias` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -544,6 +571,28 @@ BEGIN
 	INNER JOIN tipo_instruccion ti ON ti.id_tipo_instruccion = i.id_tipo_instruccion
 	WHERE i.id_ruta = IdRuta
     ORDER BY i.numero_instruccion ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `locacionById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `locacionById`(IN id INT)
+BEGIN
+select l.id_locacion, l.nombre_locacion, l.direccion, l.ciudad, p.nombre as provincia, tl.tipo as tipo_locacion, IF(l.es_publica, 'true', 'false') as esPublica , l.usuario from locacion l
+    inner join provincia p on p.id_provincia = l.id_provincia
+    inner join tipo_locacion tl on tl.id_tipo_locacion = l.id_tipo_locacion
+    where l.id_locacion = id;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -827,4 +876,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 12:31:19
+-- Dump completed on 2020-06-26 16:03:51
