@@ -35,7 +35,7 @@ CREATE TABLE `instruccion` (
   KEY `fk_id_tipo_instruccion_idx` (`id_tipo_instruccion`),
   CONSTRAINT `fk_id_tipo_instruccion` FOREIGN KEY (`id_tipo_instruccion`) REFERENCES `tipo_instruccion` (`id_tipo_instruccion`),
   CONSTRAINT `fk_ruta` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`)
-) ENGINE=InnoDB AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=239 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `instruccion` (
 
 LOCK TABLES `instruccion` WRITE;
 /*!40000 ALTER TABLE `instruccion` DISABLE KEYS */;
-INSERT INTO `instruccion` VALUES (1,2,1,1,20),(2,2,2,2,0),(4,2,3,1,20),(5,2,4,4,20),(6,2,5,1,35),(7,4,1,1,20),(8,4,2,3,0),(9,4,3,1,20),(10,4,4,3,0),(11,4,5,1,5),(12,4,6,2,0),(13,4,7,1,40),(14,4,8,2,0),(15,4,9,1,15),(16,4,10,3,0),(17,4,11,1,75),(18,4,12,3,0),(19,4,13,1,3),(20,4,14,2,0),(21,4,15,1,3),(22,4,16,3,0),(23,4,17,1,10),(24,5,1,1,10),(25,5,2,2,0),(26,5,3,6,5),(27,5,4,1,5),(28,5,5,2,0),(29,2,1,1,10),(170,125,0,1,20),(171,125,1,2,45),(172,125,2,1,10),(173,125,3,5,20),(174,125,4,2,45),(175,125,5,1,5),(176,126,0,1,40),(177,126,1,2,45),(178,126,2,1,10),(179,126,0,1,40),(180,126,1,2,45),(181,127,0,1,20),(182,127,1,2,45),(183,127,2,1,30),(184,127,0,1,20),(185,127,2,1,30);
+INSERT INTO `instruccion` VALUES (1,2,1,1,20),(2,2,2,2,0),(4,2,3,1,20),(5,2,4,4,20),(6,2,5,1,35),(7,4,1,1,20),(8,4,2,3,0),(9,4,3,1,20),(10,4,4,3,0),(11,4,5,1,5),(12,4,6,2,0),(13,4,7,1,40),(14,4,8,2,0),(15,4,9,1,15),(16,4,10,3,0),(17,4,11,1,75),(18,4,12,3,0),(19,4,13,1,3),(20,4,14,2,0),(21,4,15,1,3),(22,4,16,3,0),(23,4,17,1,10),(24,5,1,1,10),(25,5,2,2,0),(26,5,3,6,5),(27,5,4,1,5),(28,5,5,2,0),(29,2,1,1,10),(235,148,0,1,10),(236,148,3,1,5),(237,148,2,5,10),(238,148,1,2,45);
 /*!40000 ALTER TABLE `instruccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +71,7 @@ CREATE TABLE `locacion` (
   CONSTRAINT `fk_id_provincia` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`),
   CONSTRAINT `fk_id_tipo_locacion` FOREIGN KEY (`id_tipo_locacion`) REFERENCES `tipo_locacion` (`id_tipo_locacion`),
   CONSTRAINT `fk_usr` FOREIGN KEY (`usuario`) REFERENCES `usuario` (`usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +80,7 @@ CREATE TABLE `locacion` (
 
 LOCK TABLES `locacion` WRITE;
 /*!40000 ALTER TABLE `locacion` DISABLE KEYS */;
-INSERT INTO `locacion` VALUES (1,'Universidad Nacional de San Martín','Martin de Irigoyen 3100','San Martin',2,3,0,'lamponne@gmail.com'),(2,'Universidad Nacional de La Matanza','Pres. Juan Domingo Peron 2335','La Matanza',2,3,0,'lamponne@gmail.com'),(3,'Universidad Nacional de Tres de Febrero','Valentin Gomez 4772','Tres de Febrero',2,3,0,'lamponne@gmail.com'),(4,'Hospital Pirovano','Av. Monroe 3555\"','CABA',1,2,0,'lamponne@gmail.com'),(5,'Hospital Tornú','Combatientes de Malvinas 3002','CABA',1,2,0,'lamponne@gmail.com'),(6,'Hospital Thompson','Avellaneda 33','San Martin',1,2,1,'lamponne@gmail.com'),(13,'Hospital Posadas','Avenida Presidente Arturo U.','El Palomar',2,2,1,'emiravenna@gmail.com');
+INSERT INTO `locacion` VALUES (1,'Universidad Nacional de San Martín','Martin de Irigoyen 3100','San Martin',2,3,0,'lamponne@gmail.com'),(2,'Universidad Nacional de La Matanza','Pres. Juan Domingo Peron 2335','La Matanza',2,3,0,'lamponne@gmail.com'),(3,'Universidad Nacional de Tres de Febrero','Valentin Gomez 4772','Tres de Febrero',2,3,0,'lamponne@gmail.com'),(4,'Hospital Pirovano','Av. Monroe 3555\"','CABA',1,2,0,'lamponne@gmail.com'),(5,'Hospital Tornú','Combatientes de Malvinas 3002','CABA',1,2,0,'lamponne@gmail.com'),(6,'Hospital Thompson','Avellaneda 33','San Martin',1,2,1,'lamponne@gmail.com'),(18,'Hospital Posadas','Calle falsa 123','El Palomar',2,2,1,'emiravenna@gmail.com');
 /*!40000 ALTER TABLE `locacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `ruta` (
   CONSTRAINT `fk_locacion_id` FOREIGN KEY (`id_locacion`) REFERENCES `locacion` (`id_locacion`),
   CONSTRAINT `fk_nombreusuario` FOREIGN KEY (`creado_por`) REFERENCES `usuario` (`usuario`),
   CONSTRAINT `fk_ruta_1` FOREIGN KEY (`id_ruta_estado`) REFERENCES `ruta_estado` (`id_ruta_estado`)
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +194,7 @@ CREATE TABLE `ruta` (
 
 LOCK TABLES `ruta` WRITE;
 /*!40000 ALTER TABLE `ruta` DISABLE KEYS */;
-INSERT INTO `ruta` VALUES (1,0,1,'Biblioteca','lamponne@gmail.com','2020-05-06','Biblioteca de la UNSAM',1),(2,0,1,'Departamento de alumnos tornavías','lamponne@gmail.com','2020-05-06','Departamento de alumnos tornavías de la UNSAM',1),(3,0,1,'Aulario','lamponne@gmail.com','2020-05-06','Aulario de la UNSAM',1),(4,0,1,'Laboratorio de Ciencias Sociales','lamponne@gmail.com','2020-05-06','Laboratiorio de Ciencias Sociales de la UNSAM',1),(5,0,4,'Sala de rayos X','lamponne@gmail.com','2020-05-06','Sala de rayos X del Hospital Pirovano',1),(125,0,13,'Consultorio 4','lamponne@gmail.com','2020-05-06','Test',1),(126,0,13,'Test','lamponne@gmail.com','2020-05-06','Test',1),(127,0,13,'Consultorio 1','lamponne@gmail.com','2020-05-06','Test',1);
+INSERT INTO `ruta` VALUES (1,1,1,'Biblioteca','lamponne@gmail.com','2020-05-06','Biblioteca de la UNSAM',1),(2,1,1,'Departamento de alumnos tornavías','lamponne@gmail.com','2020-05-06','Departamento de alumnos tornavías de la UNSAM',1),(3,0,1,'Aulario','lamponne@gmail.com','2020-05-06','Aulario de la UNSAM',1),(4,1,1,'Laboratorio de Ciencias Sociales','lamponne@gmail.com','2020-05-06','Laboratiorio de Ciencias Sociales de la UNSAM',1),(5,0,4,'Sala de rayos X','lamponne@gmail.com','2020-05-06','Sala de rayos X del Hospital Pirovano',1),(148,1,18,'Consultorio 1','emiravenna@gmail.com','2020-05-06','Test',1);
 /*!40000 ALTER TABLE `ruta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -627,7 +627,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `locaciones_por_usuario`(IN usuario VARCHAR(45))
 BEGIN
-	select l.id_locacion as id, l.nombre_locacion as nombre, l.direccion, l.ciudad, p.nombre as provincia, tl.tipo as tipoLocacion, IF(l.es_publica, 'true', 'false') as esPublica , l.usuario from locacion l
+	select l.id_locacion as id, l.nombre_locacion as nombre, l.direccion, l.ciudad, p.nombre as provincia, tl.tipo as tipoLocacion, l.es_publica as esPublica , l.usuario from locacion l
     inner join provincia p on p.id_provincia = l.id_provincia
     inner join tipo_locacion tl on tl.id_tipo_locacion = l.id_tipo_locacion
     where l.usuario = usuario;
@@ -685,6 +685,27 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `publicarRuta` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `publicarRuta`(IN idRuta INT)
+BEGIN
+	UPDATE ruta r
+    SET r.es_publica = 1
+	WHERE r.id_ruta = idRuta;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `rutaPorId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -725,6 +746,29 @@ FROM ruta r
 INNER JOIN locacion l on l.id_locacion = r.id_locacion
 INNER JOIN ruta_estado re on re.id_ruta_estado = r.id_ruta_estado
 WHERE l.id_locacion = IdLocacion;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `rutasUsuario` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `rutasUsuario`(IN usuario VARCHAR(45))
+BEGIN
+	SELECT r.id_ruta as id, r.es_publica as esPublica , l.nombre_locacion as locacion, r.nombre_ruta as nombre, r.creado_por as usuario, r.creado_el as fechaCreacion, r.descripcion, re.descripcion as estado
+	FROM ruta r 
+	INNER JOIN locacion l on l.id_locacion = r.id_locacion
+	INNER JOIN ruta_estado re on re.id_ruta_estado = r.id_ruta_estado
+	WHERE r.creado_por = usuario;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -783,4 +827,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-25 15:55:01
+-- Dump completed on 2020-06-26 12:31:19
