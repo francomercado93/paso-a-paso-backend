@@ -589,7 +589,7 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `locacionById`(IN id INT)
 BEGIN
-select l.id_locacion, l.nombre_locacion, l.direccion, l.ciudad, p.nombre as provincia, tl.tipo as tipo_locacion, IF(l.es_publica, 'true', 'false') as esPublica , l.usuario from locacion l
+	select l.id_locacion as id, l.nombre_locacion as nombre, l.direccion, l.ciudad , p.id_provincia as provincia, tl.id_tipo_locacion as tipoLocacion, IF(l.es_publica, 'true', 'false') as esPublica , l.usuario from locacion l
     inner join provincia p on p.id_provincia = l.id_provincia
     inner join tipo_locacion tl on tl.id_tipo_locacion = l.id_tipo_locacion
     where l.id_locacion = id;
@@ -876,4 +876,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-26 16:03:51
+-- Dump completed on 2020-06-26 17:11:37

@@ -148,40 +148,4 @@ router.put('/publicar-ruta/:idRuta', jsonParser, (req, res) => {
     })
 });
 
-router.get('/locacion/:id', (req, res) => {
-    console.log(req.params);
-    const { id } = req.params;
-    const sp = `CALL locacionById(${id})`;
-    mysqlConnection.query(sp, (err, rows, fields) => {
-        if (!err) {
-            res.json(rows[0]);
-        }
-        else {
-            console.log(err);
-        }
-    })
-});
-
-router.post('/actualizarlocacion', jsonParser, (req, res) => {
-    const {
-        id,
-        nombre,
-        direccion,
-        ciudad,
-        provincia,
-        tipoLocacion,
-        esPublica,
-        usuario
-    } = req.body;
-    console.log(req.body);
-    const sp = `CALL actualizar_locacion("${id}", "${nombre}", "${direccion}", "${ciudad}", "${provincia}", "${tipoLocacion}", ${esPublica}, "${usuario}")`;
-    mysqlConnection.query(sp, (err, rows, fields) => {
-        if (!err) {
-            res.json(rows[0]);
-        }
-        else {
-            console.log(err);
-        }
-    })
-});
 module.exports = router;
